@@ -1,4 +1,4 @@
-/* Hoja ---------------------------------------------------------------- */
+/* Sheet --------------------------------------------------------------- */
 
 .sheet {
   position: relative;
@@ -7,7 +7,7 @@
   padding: var(--gutter);
 }
 
-/* Grano de papel cianotipo */
+/* Cyanotype paper grain */
 .sheet::before {
   content: '';
   position: fixed;
@@ -57,7 +57,7 @@
   }
 }
 
-/* Nombre -------------------------------------------------------------- */
+/* Name ---------------------------------------------------------------- */
 
 .drawing {
   align-self: center;
@@ -104,7 +104,7 @@
   white-space: nowrap;
 }
 
-/* Con espacio de sobra, el nombre deja una columna a la derecha para las etiquetas */
+/* With room to spare, the name leaves a column on the right for the labels */
 @media (min-width: 1000px) {
   .name-svg {
     max-width: min(calc(44dvh * var(--ratio)), calc(100% - 10rem));
@@ -123,7 +123,7 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* Leyenda ------------------------------------------------------------- */
+/* Legend -------------------------------------------------------------- */
 
 .legend {
   position: relative;
@@ -192,7 +192,7 @@
   fill: currentColor;
 }
 
-/* Cuadro de rótulo ---------------------------------------------------- */
+/* Title block --------------------------------------------------------- */
 
 .title-block {
   display: grid;
@@ -257,7 +257,7 @@
   stroke-linejoin: round;
 }
 
-/* Cursor CAD ---------------------------------------------------------- */
+/* CAD cursor ---------------------------------------------------------- */
 
 .crosshair {
   position: absolute;
@@ -313,7 +313,7 @@
   transform: translate(calc(var(--x) + 12px), calc(var(--y) + 10px));
 }
 
-/* Móvil --------------------------------------------------------------- */
+/* Mobile -------------------------------------------------------------- */
 
 @media (max-width: 720px) {
   .legend {
@@ -326,7 +326,7 @@
   }
 }
 
-/* Secuencia de dibujo ------------------------------------------------- */
+/* Drawing sequence ---------------------------------------------------- */
 
 @media (prefers-reduced-motion: no-preference) {
   .frame {
@@ -364,7 +364,7 @@
     animation: draw-unit 800ms ease-in-out 3400ms both;
   }
 
-  /* Todo espera a que la fuente esté lista para medir el nombre */
+  /* Everything waits until the font is ready so the name can be measured */
   .sheet:not([data-ready])
     :is(
       .frame,

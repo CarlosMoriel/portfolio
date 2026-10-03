@@ -1,14 +1,14 @@
 # carlosmoriel.com
 
-Portafolio de Carlos Moriel. Por ahora es una página de "en construcción" presentada como un plano técnico que se dibuja solo.
+Personal portfolio of Carlos Moriel. For now it's an "under construction" page presented as a technical drawing that drafts itself.
 
-## Desarrollo
+## Development
 
 ```bash
 npm install
-npm run dev      # servidor local con recarga en caliente
-npm run build    # compila a dist/
+npm run dev      # local dev server with hot reload
+npm run build    # build to dist/
 npm run lint
 ```
 
-Hecho con React, TypeScript y Vite. Se despliega en Vercel con cada push a `main`.
+Built with React, TypeScript, and Vite. Deployed on Vercel on every push to `main`.

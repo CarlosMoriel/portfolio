@@ -5,7 +5,7 @@ interface CrosshairProps {
   containerRef: RefObject<HTMLElement | null>
 }
 
-// Cursor tipo CAD: líneas que cruzan el plano y coordenadas desde la esquina inferior izquierda
+// CAD-style cursor: lines across the plan and coordinates from the bottom-left corner
 export function Crosshair({ containerRef }: CrosshairProps) {
   const rootRef = useRef<HTMLDivElement>(null)
   const coordsRef = useRef<HTMLSpanElement>(null)

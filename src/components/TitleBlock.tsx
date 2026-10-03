@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 
-// Nube de revisión: arcos hacia afuera recorriendo el rectángulo en sentido horario
+// Revision cloud: outward arcs walking the rectangle clockwise
 function cloudPath(width: number, height: number, bump = 8) {
   const points: [number, number][] = []
   const edge = (x0: number, y0: number, x1: number, y1: number) => {
@@ -60,26 +60,26 @@ function RevisionCloud() {
 
 export function TitleBlock() {
   return (
-    <dl className="title-block" aria-label="Datos del proyecto">
-      <dt>Proyecto</dt>
+    <dl className="title-block" aria-label="Project details">
+      <dt>Project</dt>
       <dd>carlosmoriel.com</dd>
 
-      <dt>Autor</dt>
+      <dt>Author</dt>
       <dd>Carlos Moriel</dd>
 
-      <dt>Estado</dt>
+      <dt>Status</dt>
       <dd className="title-block-status">
         <span className="clouded">
-          En construcción
+          Under construction
           <RevisionCloud />
         </span>
       </dd>
 
-      <dt>Revisión</dt>
+      <dt>Revision</dt>
       <dd>0.1</dd>
 
-      <dt>Fecha</dt>
-      <dd>Octubre 2026</dd>
+      <dt>Date</dt>
+      <dd>October 2026</dd>
     </dl>
   )
 }

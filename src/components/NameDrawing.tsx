@@ -5,9 +5,9 @@ const LINES = ['Carlos', 'Moriel']
 const FONT_FAMILY = '"Archivo Variable", sans-serif'
 const FONT_SIZE = 200
 const FONT_WEIGHT = 800
-// Separación entre líneas base, en múltiplos de la altura de mayúsculas
+// Distance between baselines, as a multiple of the cap height
 const LINE_STEP = 1.42
-// Espacio reservado sobre el nombre para la cota
+// Space reserved above the name for the dimension line
 const DIMENSION_SPACE = 96
 const FONT_TIMEOUT_MS = 3000
 
@@ -25,9 +25,9 @@ interface Guide {
 }
 
 const GUIDE_LABELS: Record<Guide['kind'], string> = {
-  cap: 'altura de mayúsculas',
-  x: 'altura de la x',
-  base: 'línea de base',
+  cap: 'cap height',
+  x: 'x-height',
+  base: 'baseline',
 }
 
 function measureMetrics(texts: SVGTextElement[]): Metrics {
@@ -41,8 +41,8 @@ function measureMetrics(texts: SVGTextElement[]): Metrics {
   const cap = ctx.measureText('H').actualBoundingBoxAscent
   const xHeight = ctx.measureText('x').actualBoundingBoxAscent
 
-  // Con fontStretch el canvas mide la tinta real del ancho expandido;
-  // sin él, se usa el avance del texto SVG.
+  // With fontStretch the canvas measures the actual ink of the expanded width;
+  // without it, fall back to the SVG text advance.
   if ('fontStretch' in ctx) {
     ctx.fontStretch = 'expanded'
     const boxes = LINES.map((line) => ctx.measureText(line))
@@ -111,7 +111,7 @@ export function NameDrawing({ onReady }: NameDrawingProps) {
     return () => observer.disconnect()
   }, [metrics, viewWidth])
 
-  // Unidades de usuario equivalentes a 1 px en pantalla
+  // User units equivalent to 1 screen px
   const px = 1 / scale
 
   const guides: Guide[] = baselines.flatMap((baseline, i) =>
@@ -209,7 +209,7 @@ export function NameDrawing({ onReady }: NameDrawingProps) {
             textAnchor="middle"
             stroke="none"
           >
-            {measuredWidth.toLocaleString('es-MX')} px
+            {measuredWidth.toLocaleString('en-US')} px
           </text>
         </g>
       </svg>

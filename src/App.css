@@ -1,0 +1,420 @@
+/* Hoja ---------------------------------------------------------------- */
+
+.sheet {
+  position: relative;
+  display: flex;
+  min-height: 100dvh;
+  padding: var(--gutter);
+}
+
+/* Grano de papel cianotipo */
+.sheet::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.07;
+}
+
+.frame {
+  position: relative;
+  display: flex;
+  flex: 1;
+  padding: 5px;
+  border: 2px solid var(--ink);
+}
+
+.plan {
+  position: relative;
+  display: grid;
+  flex: 1;
+  grid-template-rows: 1fr auto;
+  gap: clamp(28px, 5vh, 72px);
+  min-width: 0;
+  padding: clamp(20px, 4.5vh, 64px) var(--pad);
+  overflow: hidden;
+  border: 1px solid var(--ink-faint);
+  background-image:
+    linear-gradient(var(--grid-major) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-major) 1px, transparent 1px),
+    linear-gradient(var(--grid-minor) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-minor) 1px, transparent 1px);
+  background-size:
+    120px 120px,
+    120px 120px,
+    24px 24px,
+    24px 24px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .plan {
+    cursor: none;
+  }
+
+  .plan a {
+    cursor: pointer;
+  }
+}
+
+/* Nombre -------------------------------------------------------------- */
+
+.drawing {
+  align-self: center;
+  min-width: 0;
+}
+
+.name {
+  position: relative;
+}
+
+.name-svg {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  max-width: calc(44dvh * var(--ratio));
+  height: auto;
+  aspect-ratio: var(--ratio);
+  overflow: visible;
+  color: var(--ink);
+}
+
+.guide {
+  position: absolute;
+  left: calc(-1 * var(--pad));
+  right: calc(-1 * var(--pad));
+  height: 0;
+  border-top: 1px solid var(--ink-faint);
+}
+
+.guide-x {
+  border-top-style: dashed;
+  border-top-color: rgb(230 238 250 / 0.16);
+}
+
+.guide-label {
+  position: absolute;
+  right: 14px;
+  bottom: 4px;
+  display: none;
+  font-size: 0.75rem;
+  font-stretch: 80%;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+/* Con espacio de sobra, el nombre deja una columna a la derecha para las etiquetas */
+@media (min-width: 1000px) {
+  .name-svg {
+    max-width: min(calc(44dvh * var(--ratio)), calc(100% - 10rem));
+  }
+
+  .guide-label {
+    display: block;
+  }
+}
+
+.dimension-label {
+  fill: var(--ink-soft);
+  font-family: var(--font);
+  font-stretch: 80%;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Leyenda ------------------------------------------------------------- */
+
+.legend {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px 56px;
+}
+
+.intro {
+  display: grid;
+  justify-items: start;
+  gap: 12px;
+  max-width: 34rem;
+}
+
+.role {
+  font-size: clamp(1.125rem, 0.95rem + 0.7vw, 1.5rem);
+  font-stretch: 112%;
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+.lead {
+  max-width: 46ch;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 13px 20px 13px 18px;
+  border-radius: 3px;
+  background: var(--ink);
+  color: var(--blueprint-deep);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+
+.cta:hover {
+  background: var(--markup);
+}
+
+.cta:active {
+  transform: translateY(1px);
+}
+
+.cta:focus-visible {
+  outline: 2px solid var(--markup);
+  outline-offset: 3px;
+}
+
+.cta-icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+/* Cuadro de rótulo ---------------------------------------------------- */
+
+.title-block {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  min-width: min(100%, 22rem);
+  margin: 0;
+  border: 1.5px solid var(--ink);
+  background: rgb(7 42 82 / 0.72);
+  font-size: 0.9375rem;
+}
+
+.title-block dt,
+.title-block dd {
+  margin: 0;
+  padding: 8px 16px;
+  border-top: 1px solid var(--ink-faint);
+}
+
+.title-block dt:first-of-type,
+.title-block dd:first-of-type {
+  border-top: 0;
+}
+
+.title-block dt {
+  display: flex;
+  align-items: center;
+  border-right: 1px solid var(--ink-faint);
+  font-size: 0.75rem;
+  font-stretch: 80%;
+  color: var(--ink-soft);
+}
+
+.title-block dd {
+  font-weight: 500;
+}
+
+.title-block .title-block-status {
+  display: flex;
+  align-items: center;
+  padding-block: 13px;
+}
+
+.clouded {
+  position: relative;
+  color: var(--markup);
+}
+
+.revision-cloud {
+  position: absolute;
+  top: -10px;
+  left: -13px;
+  width: calc(100% + 26px);
+  height: calc(100% + 20px);
+  overflow: visible;
+  pointer-events: none;
+}
+
+.revision-cloud-path {
+  fill: none;
+  stroke: var(--markup);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+
+/* Cursor CAD ---------------------------------------------------------- */
+
+.crosshair {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.crosshair.is-active {
+  opacity: 1;
+}
+
+.crosshair-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgb(230 238 250 / 0.24);
+}
+
+.crosshair-h {
+  right: 0;
+  height: 1px;
+  transform: translateY(var(--y));
+}
+
+.crosshair-v {
+  bottom: 0;
+  width: 1px;
+  transform: translateX(var(--x));
+}
+
+.crosshair-pick {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 11px;
+  height: 11px;
+  border: 1px solid var(--ink);
+  transform: translate(calc(var(--x) - 5px), calc(var(--y) - 5px));
+}
+
+.crosshair-coords {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 0.6875rem;
+  font-stretch: 80%;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  transform: translate(calc(var(--x) + 12px), calc(var(--y) + 10px));
+}
+
+/* Móvil --------------------------------------------------------------- */
+
+@media (max-width: 720px) {
+  .legend {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .title-block {
+    min-width: 0;
+  }
+}
+
+/* Secuencia de dibujo ------------------------------------------------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .frame {
+    animation: fade-in 700ms ease-out both;
+  }
+
+  .guide {
+    transform-origin: left center;
+    animation: extend 900ms cubic-bezier(0.65, 0, 0.35, 1) calc(250ms + var(--i) * 60ms) both;
+  }
+
+  .name-outline {
+    stroke-dasharray: 2000;
+    animation: draw 2200ms cubic-bezier(0.45, 0, 0.25, 1) 600ms both;
+  }
+
+  .name-hatch {
+    animation: sweep 1100ms cubic-bezier(0.65, 0, 0.35, 1) 2100ms both;
+  }
+
+  .dimension {
+    animation: fade-in 500ms ease-out 2600ms both;
+  }
+
+  .intro {
+    animation: fade-in 700ms ease-out 2750ms both;
+  }
+
+  .title-block {
+    animation: fade-in 700ms ease-out 2950ms both;
+  }
+
+  .revision-cloud-path {
+    stroke-dasharray: 1;
+    animation: draw-unit 800ms ease-in-out 3400ms both;
+  }
+
+  /* Todo espera a que la fuente esté lista para medir el nombre */
+  .sheet:not([data-ready])
+    :is(
+      .frame,
+      .guide,
+      .name-outline,
+      .name-hatch,
+      .dimension,
+      .intro,
+      .title-block,
+      .revision-cloud-path
+    ) {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes extend {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 2000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes draw-unit {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes sweep {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}

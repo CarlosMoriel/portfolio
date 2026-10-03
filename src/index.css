@@ -1,3 +1,27 @@
+:root {
+  --blueprint: #0d3a70;
+  --blueprint-deep: #072a52;
+  --ink: #e6eefa;
+  --ink-soft: rgb(230 238 250 / 0.7);
+  --ink-faint: rgb(230 238 250 / 0.26);
+  --grid-minor: rgb(230 238 250 / 0.055);
+  --grid-major: rgb(230 238 250 / 0.11);
+  --markup: #ffd24a;
+
+  --font: 'Archivo Variable', 'Archivo', system-ui, sans-serif;
+  --gutter: clamp(8px, 1.6vw, 20px);
+  --pad: clamp(20px, 5vw, 72px);
+
+  color-scheme: dark;
+  font-family: var(--font);
+  font-size: 100%;
+  line-height: 1.5;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
 *,
 *::before,
 *::after {
@@ -5,27 +29,33 @@
 }
 
 html,
-body,
-#root {
-  height: 100%;
+body {
   margin: 0;
 }
 
 body {
-  background: #000;
+  min-height: 100dvh;
+  background:
+    radial-gradient(ellipse 120% 90% at 50% 35%, var(--blueprint) 40%, var(--blueprint-deep) 100%)
+    fixed;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
   overflow: hidden;
-}
-
-.stage {
-  display: grid;
-  place-items: center;
-  width: 100vw;
-  height: 100dvh;
-}
-
-.hero {
-  display: block;
-  height: 90vh;
-  max-width: 90vw;
-  object-fit: contain;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }

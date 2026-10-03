@@ -17,26 +17,15 @@ body {
 }
 
 .stage {
-  position: relative;
   display: grid;
   place-items: center;
   width: 100vw;
   height: 100dvh;
-  overflow: hidden;
-}
-
-/* La foto original es pequeña: se rellena la pantalla con una copia desenfocada */
-.backdrop {
-  position: absolute;
-  inset: -40px;
-  background-position: center;
-  background-size: cover;
-  filter: blur(32px) brightness(0.6);
 }
 
 .hero {
-  position: relative;
-  width: 100%;
-  height: 100%;
+  display: block;
+  height: 90vh;
+  max-width: 90vw;
   object-fit: contain;
 }
